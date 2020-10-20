@@ -24,15 +24,20 @@ if (isset($_POST['userGuess'])) {
 
 if (isset($guessResult)) {
     $response["attempt"] = $_SESSION['numberOfAttempt'];
-    if ($guessResult['code'] == 1) {
-        session_unset();
-        session_destroy();
-    }elseif ($_SESSION['numberOfAttempt'] == 3) {
-        $guessResult = $guessResult['code'] != 1 ? ["msg" => "Sorry! You lost the game. Please try again."] : $response;
-        session_unset();
-        session_destroy();
+    if (!$guessResult) {
+        $response = ["msg" => "Please choose the number from 1 to 10", "code" => 422];
+        $_SESSION['numberOfAttempt'] -= 1;
+    } else {
+        if ($guessResult['code'] == 1) {
+            session_unset();
+            session_destroy();
+        } elseif ($_SESSION['numberOfAttempt'] == 3) {
+            $guessResult = $guessResult['code'] != 1 ? ["msg" => "Sorry! You lost the game. Please try again."] : $response;
+            session_unset();
+            session_destroy();
+        }
+        $response = array_merge($response, $guessResult);
     }
-    $response = array_merge($response, $guessResult);
 }
 echo json_encode($response, true);
 ?>

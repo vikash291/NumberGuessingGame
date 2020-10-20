@@ -25,7 +25,7 @@
 
         <div class="form-group mx-sm-3 mb-2">
             <input type="number" class="form-control" name="userGuess" id="userGuess" placeholder="Guess the number"
-                   min="1" max="10" required>
+                    required>
         </div>
         <input type="submit" value="Guess" class="btn btn-primary mb-2" name="guessBtn">
 

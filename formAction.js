@@ -11,9 +11,13 @@ $(document).ready(function () {
                 $(".guessForm")[0].reset();
 
                 data = JSON.parse(data);
-
-                $(".inputmessage").html("Your " + attemptString[data.attempt] + " guess is : " + userGuess);
-                $(".resultMessage").html(data.msg);
+                if (data.code != 422) {
+                    $(".inputmessage").html("Your " + attemptString[data.attempt] + " guess is : " + userGuess);
+                    $(".resultMessage").html(data.msg);
+                } else {
+                    $(".inputmessage").html("Invalid Input : " + userGuess);
+                    $(".resultMessage").html(data.msg);
+                }
 
             });
         }

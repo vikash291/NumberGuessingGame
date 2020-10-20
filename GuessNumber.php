@@ -11,6 +11,9 @@ class GuessNumber
 
     public function evaluateUserInput($userNumber)
     {
+        if (!$this->validateUserInput($userNumber)) {
+            return false;
+        }
         if ($userNumber == $this->secretNumber) {
             $result = ["msg"=>"Right! You have won the Game", "code"=> 1];
         } elseif (abs($userNumber - $this->secretNumber) >= 3) {
@@ -21,6 +24,10 @@ class GuessNumber
             $result = ["msg"=>"(hot)", "code"=> 4];
         }
         return $result;
+    }
+
+    public function validateUserInput($userInput) {
+        return $userInput > 0 && $userInput < 11 ? true : false;
     }
 
 }
