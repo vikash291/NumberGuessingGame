@@ -10,3 +10,11 @@ Steps to setup the application :
   php -S 127.0.0.1:8001 
 ```
 * Pleae select that port which is not in use.
+
+Unit Test cases:
+--------------------
+
+Run following command to add phpunit packages in the project folder:
+```sh 
+  composer install
+``` 
